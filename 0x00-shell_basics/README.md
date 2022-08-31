@@ -1,1 +1,1 @@
-A script to display long hidden files with user and group ID
+a script that creates a directory named my_first_directory in the /tmp/ directory
