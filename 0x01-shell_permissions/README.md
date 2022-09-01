@@ -1,1 +1,1 @@
-a script that sets the several permission to the file hello 
+a script that sets the mode of the file hello to 753
