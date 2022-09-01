@@ -1,1 +1,1 @@
- a script that changes the owner of the file hello to the user betty
+added a script for a touch command
