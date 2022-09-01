@@ -1,1 +1,1 @@
-added a script for a touch command
+a script that adds execute permission to the owner of the file hello
