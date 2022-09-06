@@ -1,3 +1,2 @@
 #!/bin/bash
 $(($POWER/$DIVISION))
-$(($POWER/$DIVIDE))
