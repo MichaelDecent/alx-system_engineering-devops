@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $[BINARY]3
+echo $[BINARY]2
