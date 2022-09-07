@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -name "*" -empty -exec ls -a1 {} \;
+find . -name "*" -empty -prinf "%f\n"
