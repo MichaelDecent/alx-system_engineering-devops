@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -name "*" -empty -prinf "%f\n"
+find . -empty -prinf "%f\n"
