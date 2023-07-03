@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
-# This script tells a story based on the contents of the `/etc/passwd` file
-myfile="/etc/passwd"
-f1=""
-f2=""
-f3=""
-while IFS= read -r line
-do
-    f1="$(echo "$line" | cut -d":" -f1)"
-    f2="$(echo "$line" | cut -d":" -f4)"
-    f3="$(echo "$line" | cut -d":" -f6)"
-    f4="$(echo "$line" | cut -d":" -f7)"
-    f5="$(echo "$line" | cut -d":" -f3)"
-    f6="$(echo "$line" | cut -d":" -f2)"
-    f7="$(echo "$line" | cut -d":" -f5)"
-    echo "The user ${f1} is part of the ${f2} gang, lives in ${f3} and rides ${f4}. ${f5}'s place is protected by the passcode ${f6}, more info about the user here: ${f7}"
-done < "$myfile"
+# This Bash script tells a story of passwd by displaying
+# the content of the file /etc/passwd using while loop + IFS
+
+FILE=/etc/passwd
+
+IFS=:
+
+while read -r USER PASS U_ID G_ID U_ID_INFO H_DIR CMD; do
+	echo "The user $USER is part of the $G_ID gang, \
+lives in $H_DIR and rides $CMD. $U_ID's place is \
+protected by the passcode $PASS, more info about the user here: $U_ID_INFO"
+
+done < $FILE
