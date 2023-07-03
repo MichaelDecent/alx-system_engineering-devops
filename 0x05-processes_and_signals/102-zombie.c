@@ -33,8 +33,8 @@ int main(void)
 		zombie_pid = fork();
 		/* suceesfully craeted a child process*/
 		if (zombie_pid == 0)
-			exit(0)
-				/* returning the child's PID*/
+			exit(0);
+		/* returning the child's PID*/
 		else
 			printf("Zombie process created, PID: %d\n", zombie_pid);
 	}
