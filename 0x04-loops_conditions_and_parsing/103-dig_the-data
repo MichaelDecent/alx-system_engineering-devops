@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# a Bash script that groups visitors by IP and HTTP status code, and displays this data.
+i# a Bash script that groups visitors by IP and HTTP status code, and displays this data.
 
 FILE="apache-access.log"
-awk '{print $1 " " $9}' $FILE | sort | uniq -n | sort -rn 
+awk '{print $1 " " $9}' $FILE | sort | uniq -c | sort -rn 
