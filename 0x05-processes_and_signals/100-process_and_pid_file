@@ -1,22 +1,31 @@
 #!/usr/bin/env bash
-# Creates the file /var/run/myscript.pid containing its PID
-# Displays To infinity and beyond indefinitely
-# Displays I hate the kill command when receiving a SIGTERM signal
-# Displays Y U no love me?! when receiving a SIGINT signal
-# Deletes the file /var/run/myscript.pid and terminates itse
-FILE="/var/run/myscript.pid"
+# A bash (init) script that manages manage_my_process
 
-rm_n_exit()
+FILE="/var/run/my_process.pid"
+
+start_n_disp()
 {
-  rm -f $FILE;
-  exit
+	./manage_my_process &
+	echo "$!" > "$FILE"
 }
-echo $$ >> $FILE
-while true; do
-  echo "To infinity and beyond"
-  sleep 2
-done
+stop_n_disp()
+{
+	sudo pkill -f  "./manage_my_process"
+	rm "$FILE"
+}
 
-trap "echo 'I hate the kill command' && rm_n_exit" SIGTERM
-trap "echo 'Y U no love me?!'" SIGINT
-trap "echo 'I hate the kill command' && rm_n_exit" SIGQUIT
+if [ "$1" == "start" ]; then
+	echo "manage_my_process started";
+	start_n_disp
+
+	elif [ "$1" == "stop" ]; then
+		echo "manage_my_process stopped";
+		stop_n_disp
+
+	elif [ "$1" == "restart" ]; then
+		echo "manage_my_process restarted"
+		stop_n_disp
+		start_n_disp
+	else
+		echo "Usage: manage_my_process {start|stop|restart}"
+fi
