@@ -11,7 +11,7 @@ rm_n_exit()
   rm -f $FILE;
   exit
 }
-
+echo $$ >> $FILE
 while true; do
   echo "To infinity and beyond"
   sleep 2
@@ -19,4 +19,4 @@ done
 
 trap "echo 'I hate the kill command' && rm_n_exit" SIGTERM
 trap "echo 'Y U no love me?!'" SIGINT
-trap "rm_n_exit" SIGQUIT
+trap "echo 'I hate the kill command' && rm_n_exit" SIGQUIT
