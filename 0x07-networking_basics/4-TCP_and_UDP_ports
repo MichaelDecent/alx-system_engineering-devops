@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # a Bash script that displays:
 # listening sockets
 # PID and name of the program to which each socket belongs
