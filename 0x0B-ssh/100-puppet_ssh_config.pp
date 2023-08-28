@@ -1,0 +1,5 @@
+
+file {'~/.ssh/school':
+content => ''
+
+}
