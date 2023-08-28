@@ -1,5 +1,7 @@
 
 file {'~/.ssh/school':
-content => ''
-
+content => 'Host ubuntu
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
+'
 }
