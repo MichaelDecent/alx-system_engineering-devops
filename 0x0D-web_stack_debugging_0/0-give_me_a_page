@@ -3,8 +3,6 @@
 # it returns a page containing 'Hello Holberton'
 
 sudo apt update
-sudo apt -y install curl
 sudo apt install -y apache2
-sed -i "s/<VirtualHost *:80>/<VirtualHost *:0>/" /etc/apache2/sites-enabled/000-default.conf
 echo "Hello Holberton" | sudo tee /var/www/html/index.html
-sudo systemctl restart apache2
+sudo service apache2 start
