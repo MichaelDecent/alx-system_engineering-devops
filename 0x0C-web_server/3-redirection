@@ -6,16 +6,12 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
 
 # configuring a new default server block
 sudo sh -c "echo 'server {
         listen 80 default_server;
         listen [::]:80 default_server;
-
-	location /redirect_me {
-            return 301 https://www.youtube.com;
-        }
 
         root /var/www/html;
         index index.html index.htm index.nginx-debian.html;
@@ -25,5 +21,10 @@ sudo sh -c "echo 'server {
         location / {
                 try_files \$uri \$uri/ =404;
         }
+	
+	 location /redirect_me {
+	 	return 301 https://www.youtube.com;
+        }
+
 }' > /etc/nginx/sites-available/default"
 sudo service nginx restart
