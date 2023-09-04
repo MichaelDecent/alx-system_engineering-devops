@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 # this script installs and configures nginx web server, adds a custom Nginx response header
 
-sudo apt-get update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
+sudo apt-get update &>/dev/null
+# checking if nginx exist already
+if ! command -v nginx; then
+	# installing nginx
+	echo "Installing Nginx..."
+	sudo apt-get -y install nginx &>/dev/null
+	sudo ufw allow 'Nginx HTTP' &>/dev/null
+fi
+
+# configuring nginx to add a custom header
 sudo sh -c 'echo "server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -22,4 +29,3 @@ sudo sh -c 'echo "server {
 
 sudo nginx -t
 sudo service nginx restart
-

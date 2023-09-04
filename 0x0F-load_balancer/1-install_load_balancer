@@ -2,18 +2,19 @@
 # This Script Install and configure HAproxy on your lb-01 server
 
 sudo apt-get update &>/dev/null
+
 # checking if haproxy is installed
 if ! command -v haproxy; then
 	echo "Installing HAproxy..."
 	sudo apt-get -y install --no-install-recommends software-properties-common &>/dev/null
-	sudo add-apt-repository ppa:vbernat/haproxy-2.8 
+	sudo add-apt-repository -y ppa:vbernat/haproxy-2.8 &>/dev/null
 	sudo apt-get -y install haproxy=2.8.\* &>/dev/null
 fi
 
 # configuring the Haproxy
 if ! sudo cat /etc/haproxy/haproxy.cfg | grep -q "backend servers"; then
 	# creating a backup of the default haproxy.cfg
-	sudo cp /etc/haproxy/haproxy.cfg etc/haproxy/haproxy.cfg.bak
+	sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
        	# adding backend and frontend config
 	echo "adding backend and frontend configurations...."
 	sudo sh -c 'echo "
