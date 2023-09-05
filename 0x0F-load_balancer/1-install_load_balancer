@@ -20,6 +20,7 @@ if ! sudo cat /etc/haproxy/haproxy.cfg | grep -q "backend servers"; then
 	sudo sh -c 'echo "
 	frontend http-in
 		bind *:80
+		mode http
 		default_backend servers
 	
 	backend servers
