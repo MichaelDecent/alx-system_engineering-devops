@@ -41,6 +41,10 @@ else
     	exit 1
 fi
 
+# make sure HAproxy starts on boot
+echo "Making sure HAproxy starts on boot..."
+sudo systemctl enable haproxy &>/dev/null
+
 # restart HAproxy
 echo "Restarting HAproxy..."
 sudo service haproxy restart &>/dev/null
