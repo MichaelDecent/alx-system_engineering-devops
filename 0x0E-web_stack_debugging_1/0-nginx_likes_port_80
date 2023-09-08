@@ -4,8 +4,8 @@
 # you need, start and destroy as many containers as you need to debug the issue.
 # Then, write a Bash script with the minimum number of commands to automate your fix.
 
-#kill exist nginx process
-pkill -o nginx
+#stop nginx process
+service nginx stop
 
 # removing the buggy file
 rm /etc/nginx/sites-enabled/default
