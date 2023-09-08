@@ -5,7 +5,7 @@
 # Then, write a Bash script with the minimum number of commands to automate your fix.
 
 #kill exist nginx process
-kill -TERM $(pgrep nginx)
+kill -TERM "$(pgrep nginx)"
 
 # removing the buggy file
 rm /etc/nginx/sites-enabled/default
