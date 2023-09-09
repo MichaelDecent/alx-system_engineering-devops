@@ -44,7 +44,7 @@ frontend http-in
         default_backend servers
 
 frontend https-in
-        bind *:443 ssl crt /etc/haproxy/certs/www.cheezaram.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/michaeldecent.tech.pem
         http-request add-header X-Forwared-Proto https
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         use_backend letsencrypt-backend if letsencrypt-acl
