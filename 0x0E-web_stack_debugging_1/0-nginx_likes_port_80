@@ -5,13 +5,13 @@
 # Then, write a Bash script with the minimum number of commands to automate your fix.
 
 #stop nginx process
-service nginx stop
+service nginx stop;
 
 # removing the buggy file
-rm /etc/nginx/sites-enabled/default
+rm /etc/nginx/sites-enabled/default;
 
 # create a line to the default file
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default;
 
 # restarting nginx
-service nginx restart
+service nginx restart;
