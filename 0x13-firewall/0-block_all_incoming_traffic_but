@@ -2,3 +2,4 @@ sudo apt install ufw
 sudo ufw 22/tcp
 sudo ufw 443/tcp
 sudo ufw 80/tcp
+sudo ufw enable
