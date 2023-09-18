@@ -1,8 +1,9 @@
-sudo apt install ufw
-sudo ufw enable
+sudi apt-get update
+sudo apt-get install ufw -y
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw 22/tcp
 sudo ufw 443/tcp
-sudo ufw 80/tcp
+sudo ufw 80/
+sudo ufw enable
 sudo ufw status
