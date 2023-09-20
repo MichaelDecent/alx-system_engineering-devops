@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# add script to automate fix of bugged docker container running as root
+
+# set user for nginx
+sed -i 's/#user www-data/user nginx/' /etc/nginx/nginx.conf
+
+# make nginx listen on port 8080
+sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+
+chmod 644 /etc/nginx/nginx.conf
+
+# kill the apache2 process using port 8080
+pkill apache2
+
+# restart nginx as nginx user
+if sudo -u nginx service nginx restart; then
+    echo "Nginx server restarted."
+else
+    echo "Nginx server restart failed. Exiting..."
+    exit 1
+fi
