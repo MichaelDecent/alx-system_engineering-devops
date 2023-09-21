@@ -7,6 +7,6 @@ if ! [ "$#" -eq 1 ]; then
 else
     current_date=$(date "+%d-%m-%Y")
 
-    mysqldump -u root -p "$1" --all-databases > backup.sql
+    sudo mysqldump -u root -password="$1" --all-databases > backup.sql
     tar -czvf "$current_date.tar.gz" backup.sql
 fi
