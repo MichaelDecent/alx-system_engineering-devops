@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if ! [ "$#" -eq 1 ]; then
+    echo "Usage: $0 <the database password>"
+    exit 1
+else
+    current_date=$(date "+%d-%m-%Y")
+
+    mysqldump -u root -p "$1" --all-databases > backup.sql
+    tar -czvf "$current_date.tar.gz" backup.sql
+fi
