@@ -24,7 +24,7 @@ def get_employee_info():
         if response["userId"] is emp_id:
             if response["completed"] is True:
                 task_done += 1
-                task_title += f"\t{response['title']}\n"
+                task_title += f"\t {response['title']}\n"
             total_task += 1
 
     print(f"""Employee {Employee_name} is done \
