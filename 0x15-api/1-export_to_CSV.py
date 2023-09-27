@@ -25,15 +25,16 @@ def get_employee_info():
     user_data = []
     for response in todo_response:
         if response["userId"] is emp_id:
-            data = []
-            data.append(f"'{response['userId']}'")
-            data.append(f"'{Employee_name}'")
-            data.append(f"'{response['completed']}'")
-            data.append(f"'{response['title']}'")
+            data = [
+                response['userId'],
+                Employee_name,
+                response['completed'],
+                response['title']
+            ]
             user_data.append(data)
 
     with open(file_name, 'w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for row in user_data:
             writer.writerow(row)
 
