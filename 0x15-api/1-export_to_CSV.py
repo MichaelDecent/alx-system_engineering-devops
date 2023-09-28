@@ -19,9 +19,10 @@ def get_employee_info():
     task_done = 0
     total_task = 0
     task_title = ""
-    Employee_name = user_response["name"]
+    Employee_name = user_response["username"]
     file_name = f"{user_response['id']}.csv"
-
+    
+    print (emp_id, Employee_name)
     user_data = []
     for response in todo_response:
         if response["userId"] is emp_id:
