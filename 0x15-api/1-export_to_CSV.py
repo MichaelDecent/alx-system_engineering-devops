@@ -2,9 +2,9 @@
 """
 This module returns information about his/her TODO list progress.
 """
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def get_employee_info():
