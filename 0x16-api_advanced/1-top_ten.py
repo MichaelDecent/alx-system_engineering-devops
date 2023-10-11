@@ -22,7 +22,6 @@ def top_ten(subreddit):
         for data in response_data['data']['children']:
             print(data['data']['title'])
     except Exception as e:
-        print(e)
         print(None)
 
 
