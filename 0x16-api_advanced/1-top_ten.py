@@ -18,6 +18,7 @@ def top_ten(subreddit):
             url.format(subreddit),
             headers={'User-Agent': 'michaeldecent'},
             allow_redirects=False)
+
         response_data = response.json()
         for data in response_data['data']['children']:
             print(data['data']['title'])

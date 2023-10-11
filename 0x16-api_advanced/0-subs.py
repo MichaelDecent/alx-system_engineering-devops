@@ -18,6 +18,7 @@ def number_of_subscribers(subreddit):
             url.format(subreddit),
             headers={'User-Agent': 'michaeldecent'},
             allow_redirects=False)
+
         subreddit_info = response.json()
         return subreddit_info['data']['subscribers']
     except Exception as e:
