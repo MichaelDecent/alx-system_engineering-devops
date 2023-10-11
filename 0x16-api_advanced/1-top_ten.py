@@ -11,7 +11,7 @@ def top_ten(subreddit):
     queries the Reddit API and prints the
     titles of the first 10 hot posts listed for a given subreddit.
     """
-    url = f'https://www.reddit.com//r/{subreddit}/top.json'
+    url = f'https://www.reddit.com//r/{subreddit}/top.json?limit=10'
     response = requests.get(
         url.format(subreddit),
         headers={'User-Agent': 'michaeldecent'},
@@ -19,11 +19,10 @@ def top_ten(subreddit):
 
     try:
         response_data = response.json()
-        for count, data in enumerate(response_data['data']['children']):
+        for data in response_data['data']['children']:
             print(data['data']['title'])
-            if count == 9:
-                break
     except Exception as e:
+        print(e)
         print(None)
 
 
