@@ -12,12 +12,12 @@ def number_of_subscribers(subreddit):
     and returns the number of subscribers
     """
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    response = requests.get(
-        url.format(subreddit),
-        headers={'User-Agent': 'michaeldecent'},
-        allow_redirects=False)
 
     try:
+        response = requests.get(
+            url.format(subreddit),
+            headers={'User-Agent': 'michaeldecent'},
+            allow_redirects=False)
         subreddit_info = response.json()
         return subreddit_info['data']['subscribers']
     except Exception as e:
