@@ -11,7 +11,7 @@ def top_ten(subreddit):
     queries the Reddit API and prints the
     titles of the first 10 hot posts listed for a given subreddit.
     """
-    url = f'https://www.reddit.com//r/{subreddit}/hot.json'
+    url = f'https://www.reddit.com//r/{subreddit}/top.json'
     response = requests.get(
         url.format(subreddit),
         headers={'User-Agent': 'michaeldecent'},
