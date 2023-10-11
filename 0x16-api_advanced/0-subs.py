@@ -11,7 +11,7 @@ def number_of_subscribers(subreddit):
     a function that queries the Reddit API
     and returns the number of subscribers
     """
-    url = f'https://www.reddit.com//r/{subreddit}/about.json'
+    url = f'https://www.reddit.com/r/{subreddit}/about.json'
     response = requests.get(
         url.format(subreddit),
         headers={'User-Agent': 'michaeldecent'},
