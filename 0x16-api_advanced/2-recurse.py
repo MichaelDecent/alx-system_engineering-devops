@@ -15,26 +15,23 @@ def recurse(subreddit, hot_list=[], after=None):
     headers = {'User-Agent': 'michaeldecent'}
     params = {'after': after}
 
-    try:
-        response = requests.get(
-            url.format(subreddit),
-            headers=headers,
-            params=params,
-            allow_redirects=False)
-        response_data = response.json()
-        for data in response_data['data']['children']:
-            hot_list.append(data['data']['title'])
+    
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        allow_redirects=False)
 
-        after = response_data['data']['after']
+    if response.status_code != 200:
+        return None
 
-        if not after:
-            return hot_list
+    response_data = response.json()
 
-        return recurse(subreddit, hot_list, after)
-    except Exception as e:
-        print(None)
+    for data in response_data['data']['children']:
+        hot_list.append(data['data']['title'])
 
+    after = response_data['data']['after']
+    if not after:
+        return hot_list
 
-if __name__ == "__main__":
-    subreddit_name = "python"
-    print(recurse(subreddit_name))
+    return recurse(subreddit, hot_list, after)

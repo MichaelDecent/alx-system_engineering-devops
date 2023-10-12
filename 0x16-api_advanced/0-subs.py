@@ -15,7 +15,7 @@ def number_of_subscribers(subreddit):
 
     try:
         response = requests.get(
-            url.format(subreddit),
+            url,
             headers={'User-Agent': 'michaeldecent'},
             allow_redirects=False)
 
