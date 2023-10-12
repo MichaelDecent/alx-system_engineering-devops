@@ -15,7 +15,6 @@ def recurse(subreddit, hot_list=[], after=None):
     headers = {'User-Agent': 'michaeldecent'}
     params = {'after': after}
 
-    
     response = requests.get(
         url,
         headers=headers,
