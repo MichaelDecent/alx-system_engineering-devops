@@ -1,27 +1,12 @@
-# Configures Nginx to handle thousands of requests per
-# minutes
+# The puppet script increases the amount of traffic the nginx server can handle
 
-$data = 'keepalive_timeout 65;\
-\topen_file_cache max=200000 inactive=20s;\
-\topen_file_cache_valid 30s;\
-\topen_file_cache_min_uses 2;\
-\topen_file_cache_errors on;'
-
-exec {'configure_nginx1':
-  provider => 'shell',
-  cwd      => '/etc/nginx/',
-  command  => "sed -i s/'keepalive_timeout 65;'/'${data}'/g  nginx.conf"
+exec { 'update-ulimit':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-exec {'configure_nginx2':
-  provider => 'shell',
-  cwd      => '/etc/nginx/',
-  command  => "sed -i s/'# multi_accept on'/'multi_accept on'/g nginx.conf"
+# Restart the nginx service
+-> exec { 'restart-nginx':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
-
-exec {'restart_nginx':
-  provider => 'shell',
-  command  => 'service nginx restart',
-  require  => Exec['configure_nginx1','configure_nginx2']
-}
-
