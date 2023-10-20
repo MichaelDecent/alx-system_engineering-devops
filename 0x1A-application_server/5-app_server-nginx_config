@@ -1,0 +1,64 @@
+# Default server configuration
+# nginx is set up to run on the standard HTTP port (80) and listen for request
+# It also permanently redirect when resource has been move and shows error when
+# resource is not found or wrong url
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	rewrite /redirect_me https://michaeldecent.tech permanent;
+
+
+	#Let the http header include the hostname using HOSTNAME variable
+	add_header X-Served-By $HOSTNAME;
+
+	#default path to start searching for files
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	# nginx should serve up static files and never send to the WSGI server
+	# use default root path to search for files
+	location / {
+		proxy_pass http://localhost:5003;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+	}
+	
+	# Another path to start static files using path specifiled in alias
+	location /hbnb_static/ {
+		alias /data/web_static/current/;
+		autoindex off;
+	}
+
+	# requests that do not fall under /, /hbnb_static/ and /layomi/ are passed on to the WSGI
+	#server that was specified above running on port 5000
+	location /airbnb-onepage/ {
+		proxy_pass http://localhost:5000;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_redirect off;
+	}
+	
+	location ~ /number_odd_or_even/(\d+) {
+		proxy_pass http://localhost:5001/number_odd_or_even/$1;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+        }
+
+	location /api/ {
+		proxy_pass http://localhost:5002;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+   	}
+
+	location /static/ {
+                alias /home/ubuntu/AirBnB_clone_v4/web_dynamic/static/;
+        }
+
+}
